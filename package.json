@@ -1,0 +1,19 @@
+{
+  "name": "admindashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^38.1.0"
+  },
+  "dependencies": {
+    "electron-pos-printer": "^1.3.8",
+    "qrcode": "^1.5.4",
+    "socket.io-client": "^4.8.1"
+  }
+}

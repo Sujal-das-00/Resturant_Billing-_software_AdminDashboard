@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet/style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="header" style="background-color: #ff8f1f;">
+            <div class="contact-info">Developer help +91 9430798527</div>
+            <div class="admin-name">Admin Panel XYZ Hotel</div>
+
+        </div>
+        <div class="dashboard">
+            <div class="loader-wrapper hidden" id="loader-wrapper">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+            <div class="leftpanel">
+
+                <button id="orders" class="oder-btn" data-page="orders"><img src="assets/delivery-man.png" alt=""
+                        height="50px" class="img">Orders</button>
+                <button id="parcel" class="oder-btn" data-page="parcel"><img src="assets/tracking.png" alt=""
+                        height="50px" class="img">Parcel</button>
+                <button id="refresh" class="oder-btn"><img src="assets/refresh.png" alt="" height="30px"
+                        class="img">Refresh</button>
+                <button id="more-info" class="oder-btn" data-page="more"><img src="assets/menu.png" alt="" height="30px"
+                        class="img">More</button>
+
+            </div>
+
+            <div class="main-parent-right">
+                <!-- <div><h2 id="nothing-to-show">Nothing to show here...</h2></div> -->
+                <div class="right-panel" id="right-panel"></div>
+                <div class="parcel-container" id="parcel-container">
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="view-order-container" id="order-viewer">
+        <img src="assets/close.png" alt="" class="closebtn" id="closebtn" height="20px">
+        <div class="order-header">
+            <div class="oder-text" id="drag-handle"> your orders here</div>
+            <div class="status-view"></div>
+        </div>
+        <div class="oder-container"></div>
+
+        <div class="footer-order">
+            <div class="totalbill" id="totalbill">nill</div>
+            <button id="PrintOrder">Print</a></button>
+            <button id="close">Reject order</button>
+        </div>
+    </div>
+    <script src="src/orderWindowDrag.js"></script>
+    <script src="src/buttonActive.js"></script>
+
+    <script type="module" src="src/router.js"></script>
+
+</body>
+
+</html>
