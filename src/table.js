@@ -44,16 +44,24 @@ export function generateTables(tables) {
     tableDiv.innerHTML = `
        <div class="table-box" id="table-${table.tableNumber}" >
         <div class="card-header" >
-            <h3 class = "Table-name" id = "tableStatus-${table.tableNumber}">Table ${table.tableNumber} </h3>
-            <span class="status" id = "BookingStatus-${table.tableNumber}" > ${table.tableStatus} </span>
+            <h3 class = "Table-name" id = "tableStatus-${
+              table.tableNumber
+            }">Table ${table.tableNumber} </h3>
+            <span class="status" id = "BookingStatus-${table.tableNumber}" > ${
+      table.tableStatus
+    } </span>
         </div>
         <div class="card-body">
-            <p class = "payment-status" id = "paymentStatus-${table.tableNumber}" >Payment Status: ${table.paymentStatus}</p>
+            <p class = "payment-status" id = "paymentStatus-${
+              table.tableNumber
+            }" >Payment Status: ${table.paymentStatus}</p>
         </div>
 
         <!-- Card Footer -->
         <div class="card-footer">
-            <button class="btn-card btn-secondary view-orders-btn " id= "${table.tableNumber - 1}">
+            <button class="btn-card btn-secondary view-orders-btn " id= "${
+              table.tableNumber - 1
+            }">
                 <!-- Eye Icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                 View Orders
@@ -73,6 +81,7 @@ export function generateTables(tables) {
       orderView(tables[table.tableNumber - 1], "Table Order");
       console.log("hello from order view");
     });
+
     FreeTable.addEventListener("click", async () => {
       const dataObject = tables[table.tableNumber - 1];
       if (dataObject.tableStatus != "Booked") {
@@ -81,13 +90,13 @@ export function generateTables(tables) {
       }
       if (window.confirm("Do you want to Free the table")) {
         dataObject.Order_type = "On Resturant";
-        console.log(tables, "hehe haah !!!!!!!", dataObject);
         await postRequestSalesData(dataObject);
         dataObject.tableStatus = "Vacant";
         dataObject.paymentStatus = null;
         dataObject.items = [];
-        document.getElementById(`BookingStatus-${table.tableNumber}`).innerText =
-          "Vacant";
+        document.getElementById(
+          `BookingStatus-${table.tableNumber}`
+        ).innerText = "Vacant";
         document.getElementById(
           `paymentStatus-${table.tableNumber}`
         ).innerText = null;
@@ -105,31 +114,31 @@ export function updateTDom(data) {
   data.forEach((data) => {
     console.log("hello from dom update", data);
     const table = document.getElementById(`table-${data.tableNumber}`);
-    const bookingSpan = document.getElementById(`BookingStatus-${data.tableNumber}`);
+    const bookingSpan = document.getElementById(
+      `BookingStatus-${data.tableNumber}`
+    );
     const freeTableBtn = table.querySelector(".free-table");
     const spantext = table.querySelector(".btn-text");
     if (!table) return;
     table.style.color = "";
 
     if (data.tableStatus == "Booked") {
-
       table.style.color = "red";
-      table.style.backgroundColor="#f6edf0";
-      table.style.borderColor="#f4d2d4";
-      bookingSpan.style.backgroundColor="red";
-      freeTableBtn.style.backgroundColor="#283c55";
-      freeTableBtn.style.borderColor="#1c2a3b"
-      spantext.textContent="Free Table"
-
+      table.style.backgroundColor = "#f6edf0";
+      table.style.borderColor = "#f4d2d4";
+      bookingSpan.style.backgroundColor = "red";
+      freeTableBtn.style.backgroundColor = "#283c55";
+      freeTableBtn.style.borderColor = "#1c2a3b";
+      spantext.textContent = "Free Table";
     }
     if (data.tableStatus == "Vacant") {
       table.style.color = "green";
-      table.style.backgroundColor="";
-      table.style.borderColor="";
-      bookingSpan.style.backgroundColor="";
-      freeTableBtn.style.backgroundColor="";
-      freeTableBtn.style.borderColor=""
-      spantext.textContent="Available"
+      table.style.backgroundColor = "";
+      table.style.borderColor = "";
+      bookingSpan.style.backgroundColor = "";
+      freeTableBtn.style.backgroundColor = "";
+      freeTableBtn.style.borderColor = "";
+      spantext.textContent = "Available";
     }
     // table.querySelector(".status").textContent = data.status;
     table.querySelector(
@@ -183,24 +192,26 @@ export function initializeOrderView() {
         }
       }
       if (currentOrderType === "Table Order") {
-        console.log("hello world");
         const dataObject = currentOrderData;
-        //backend querry to persons table to delete one with id use crypto id
-        dataObject.tableStatus = "Vacant";
-        dataObject.paymentStatus = null;
-        dataObject.items = [];
-        document.getElementById(
-          `tableStatus-${dataObject.tableNumber}`
+        try {
+          dataObject.tableStatus = "Vacant";
+          dataObject.paymentStatus = null;
+          dataObject.items = [];
+          document.getElementById(
+          `BookingStatus-${table.tableNumber}`
         ).innerText = "Vacant";
         document.getElementById(
-          `paymentStatus-${dataObject.tableNumber}`
+          `paymentStatus-${table.tableNumber}`
         ).innerText = null;
-        const response = await RejectOrder(dataObject.tableNumber);
-        if (response.ok) {
-          alert(`order rejected for table ${dataObject.tableNumber}`);
+          const response = await RejectOrder(dataObject.tableNumber);
+          if (response.ok) {
+            alert(`order rejected for table ${dataObject.tableNumber}`);
+          }
+          const arr = [dataObject];
+          updateTDom(arr);
+        } catch (error) {
+          alert("an error ocured to reject the order ", error);
         }
-        const arr = [dataObject];
-        updateTDom(arr);
       }
     }
   });
@@ -226,7 +237,6 @@ export function initializeOrderView() {
           }
           alert(result.message);
           break;
-          
         }
       }
     }
@@ -238,10 +248,6 @@ export function initializeOrderView() {
         items: currentOrderData.items,
         totalPrice: currentOrderData.totalPrice,
       };
-      console.log(
-        "----------------------------------------------------------------" +
-          printData
-      );
       window.electronAPI.send("print-bill", printData);
     }
     viewContainer.style.visibility = "hidden";
@@ -256,7 +262,7 @@ export function orderView(orderData, type) {
   //setting the global variable value for the event listner refrence
   currentOrderData = orderData;
   currentOrderType = type;
-  console.log("--------------------------------------", type);
+
   if (orderData.items.length == 0) {
     return alert("no orders found");
   }
@@ -271,6 +277,7 @@ export function orderView(orderData, type) {
   const order_wraper = document.querySelector(".oder-container");
   const total_price = document.getElementById("totalbill");
   order_wraper.innerHTML = "";
+
   if (type === "Parcel") {
     order_container.innerText = `Parcel from ${orderData.customerName}`;
   } else {
