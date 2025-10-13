@@ -44,7 +44,7 @@ export async function GetsalesReport() {
     const data = await response.json();
     document.getElementsByClassName("revenue-number")[0].innerHTML = `₹${formatIndianNumber(data.monthlysale)}`;
     document.getElementsByClassName("revenue-number")[1].innerHTML =`₹${formatIndianNumber(data.dailySale)}`;
-    document.getElementsByClassName("revenue-number")[2].innerHTML = `₹${formatIndianNumber(data.yearlysale)}`;
+    document.getElementsByClassName("revenue-number")[2].innerHTML = `₹${formatIndianNumber(data.yealysale)}`;
   } catch (error) {
     alert("couldn't fetch salesdata from data base");
   }
