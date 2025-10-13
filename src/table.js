@@ -195,22 +195,25 @@ export function initializeOrderView() {
         const dataObject = currentOrderData;
         try {
           dataObject.tableStatus = "Vacant";
-          dataObject.paymentStatus = null;
+          dataObject.paymentStatus = "null";
           dataObject.items = [];
-          document.getElementById(
-          `BookingStatus-${table.tableNumber}`
-        ).innerText = "Vacant";
-        document.getElementById(
-          `paymentStatus-${table.tableNumber}`
-        ).innerText = null;
           const response = await RejectOrder(dataObject.tableNumber);
+
           if (response.ok) {
             alert(`order rejected for table ${dataObject.tableNumber}`);
           }
+          document.getElementById(
+            `BookingStatus-${dataObject.tableNumber}`
+          ).innerText = "Vacant";
+          document.getElementById(
+            `paymentStatus-${dataObject.tableNumber}`
+          ).innerText = "null";
+
           const arr = [dataObject];
           updateTDom(arr);
         } catch (error) {
-          alert("an error ocured to reject the order ", error);
+          alert("an error ocured to reject the order ");
+          console.log("error occurred in rejecting the order", error);
         }
       }
     }
@@ -281,7 +284,8 @@ export function orderView(orderData, type) {
   if (type === "Parcel") {
     order_container.innerText = `Parcel from ${orderData.customerName}`;
   } else {
-    order_container.innerText = `Table: ${orderData.tableNumber} Customer name: ${orderData.customerName} `;
+    order_container.innerHTML = `<h3>Table: ${orderData.tableNumber}</h3> 
+    <p>Customer name: ${orderData.customerName}</p>`;
   }
   orderStatus.innerText = `${orderData.paymentStatus}`;
   for (let index = 0; index < orderData.items.length; index++) {
