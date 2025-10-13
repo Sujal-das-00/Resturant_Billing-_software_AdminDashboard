@@ -3,10 +3,13 @@ import { initializeOrderView, ShowRevenue } from "./table.js";
 import { parcel_Data } from "./index_parcel.js";
 import { fetchAllData } from "./api_calls.js";
 import socket from "./connection.js";
-let parcelContainer = document.getElementById("parcel-container");
+
+const parcelContainer = document.getElementById("parcel-container");
+const rightPanel = document.getElementById("right-panel");
 const parcelBTN = document.getElementById("parcel");
+
 parcelBTN.addEventListener("click", () => {
-  const rightPanel = document.getElementsByClassName("right-panel")[0];
+  rightPanel.style.visibility = "hidden";
   parcelContainer.style.visibility = "visible";
   if (document.querySelectorAll(".parcel").length == 0) {
     const container = document.getElementById("parcel-container");
@@ -27,18 +30,16 @@ parcelBTN.addEventListener("click", () => {
 });
 
 const orderBtn = document.getElementById("orders");
+const tablePanel = document.querySelector("table-content");
 orderBtn.addEventListener("click", () => {
+  rightPanel.style.visibility = "visible";
   parcelContainer.style.visibility = "hidden";
   const nothingToShow = document.getElementById("nothing-to-show");
   if (nothingToShow) {
     nothingToShow.style.visibility = "hidden";
   }
-  const rightPanel = document.querySelector(".right-panel");
-  rightPanel.innerHTML = "";
-    ShowRevenue(0, "Monthly ");
-    ShowRevenue(0, "Daily ");
-    ShowRevenue(0, "Yearly ");
-    initOrderWindow();
+  tablePanel.innerHTML = "";
+  initOrderWindow();
 });
 
 socket.on("newParcel", (parcel) => {
@@ -51,8 +52,5 @@ refreshBtn.addEventListener("click", async () => {
   await fetchAllData();
 });
 
-ShowRevenue(0, "Monthly ");
-ShowRevenue(0, "Daily ");
-ShowRevenue(0, "Yearly ");
 initOrderWindow();
 initializeOrderView();

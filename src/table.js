@@ -6,10 +6,9 @@ import {
   RejectParcel,
 } from "./api_calls.js";
 
-
 export function ShowRevenue(revenue, SaleTxt) {
   const container = document.getElementById("right-panel");
-  let revenuePanel = document.getElementById("revenue-panel");
+  const revenuePanel = document.querySelector(".revenue-panel");
   if (!revenuePanel) {
     revenuePanel = document.createElement("div");
     revenuePanel.className = "revenue-panel";
@@ -41,24 +40,31 @@ export function generateTables(tables) {
   tables.forEach((table) => {
     const tableDiv = document.createElement("div");
     tableDiv.className = "table";
-    tableDiv.id = `table-${table.tableNumber}`;
     // inner box
     tableDiv.innerHTML = `
-      <div class="table-box">
-        <h2 class="Table-name">Table ${table.tableNumber}</h2>
-        <h2 class="status" id = "tableStatus-${table.tableNumber}">${
-      table.tableStatus
-    }</h2>
-        <h2 class="payment-status" id = "paymentStatus-${
-          table.tableNumber
-        }" >Payment status: ${table.paymentStatus}</h2>
-      </div>
-      <div class="buttons">
-        <button class="table-btn view-orders-btn" id= "${
-          table.tableNumber - 1
-        }" >View Orders</button>
-        <button class="table-btn free-table";">Free Table</button>
-      </div>
+       <div class="table-box" id="table-${table.tableNumber}" >
+        <div class="card-header" >
+            <h3 class = "Table-name" id = "tableStatus-${table.tableNumber}">Table ${table.tableNumber} </h3>
+            <span class="status" id = "BookingStatus-${table.tableNumber}" > ${table.tableStatus} </span>
+        </div>
+        <div class="card-body">
+            <p class = "payment-status" id = "paymentStatus-${table.tableNumber}" >Payment Status: ${table.paymentStatus}</p>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer">
+            <button class="btn-card btn-secondary view-orders-btn " id= "${table.tableNumber - 1}">
+                <!-- Eye Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                View Orders
+            </button>
+            <button class="btn-card btn-primary free-table">
+                <!-- Checkmark Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                 <span class="btn-text">Available</span> 
+            </button>
+        </div>
+    </div>
     `;
     const viewOrderButton = tableDiv.querySelector(".view-orders-btn");
     const FreeTable = tableDiv.querySelector(".free-table");
@@ -76,11 +82,11 @@ export function generateTables(tables) {
       if (window.confirm("Do you want to Free the table")) {
         dataObject.Order_type = "On Resturant";
         console.log(tables, "hehe haah !!!!!!!", dataObject);
-        postRequestSalesData(dataObject);
+        await postRequestSalesData(dataObject);
         dataObject.tableStatus = "Vacant";
         dataObject.paymentStatus = null;
         dataObject.items = [];
-        document.getElementById(`tableStatus-${table.tableNumber}`).innerText =
+        document.getElementById(`BookingStatus-${table.tableNumber}`).innerText =
           "Vacant";
         document.getElementById(
           `paymentStatus-${table.tableNumber}`
@@ -99,16 +105,31 @@ export function updateTDom(data) {
   data.forEach((data) => {
     console.log("hello from dom update", data);
     const table = document.getElementById(`table-${data.tableNumber}`);
+    const bookingSpan = document.getElementById(`BookingStatus-${data.tableNumber}`);
+    const freeTableBtn = table.querySelector(".free-table");
+    const spantext = table.querySelector(".btn-text");
     if (!table) return;
     table.style.color = "";
+
     if (data.tableStatus == "Booked") {
-      table.querySelector(".table-box").style.color = "red";
+
+      table.style.color = "red";
+      table.style.backgroundColor="#f6edf0";
+      table.style.borderColor="#f4d2d4";
+      bookingSpan.style.backgroundColor="red";
+      freeTableBtn.style.backgroundColor="#283c55";
+      freeTableBtn.style.borderColor="#1c2a3b"
+      spantext.textContent="Free Table"
+
     }
-    if (data.tableStatus == "Booked" && data.paymentStatus == "Paid") {
-      table.querySelector(".table-box").style.color = "blue";
-    }
-    if (data.tableStatus == "Vacant" && data.paymentStatus == null) {
-      table.querySelector(".table-box").style.color = "green";
+    if (data.tableStatus == "Vacant") {
+      table.style.color = "green";
+      table.style.backgroundColor="";
+      table.style.borderColor="";
+      bookingSpan.style.backgroundColor="";
+      freeTableBtn.style.backgroundColor="";
+      freeTableBtn.style.borderColor=""
+      spantext.textContent="Available"
     }
     // table.querySelector(".status").textContent = data.status;
     table.querySelector(
@@ -188,7 +209,8 @@ export function initializeOrderView() {
   document.getElementById("PrintOrder").addEventListener("click", async () => {
     if (!currentOrderData) return;
     if (currentOrderType === "Parcel") {
-
+      viewContainer.style.visibility = "hidden";
+      mainContainer.style.filter = "blur(0px)";
       //logic to handel nothing to show and to remove parcel from the dom
       while (true) {
         const response = await compelteParcelorderSaveData(currentOrderData);
@@ -204,19 +226,23 @@ export function initializeOrderView() {
           }
           alert(result.message);
           break;
+          
         }
       }
     }
 
     if ((currentOrderType = "Table Order")) {
-      console.log("current order ----",currentOrderData);
+      console.log("current order ----", currentOrderData);
       const printData = {
-        order: "Table No "+currentOrderData.tableNumber,
+        order: "Table No " + currentOrderData.tableNumber,
         items: currentOrderData.items,
         totalPrice: currentOrderData.totalPrice,
       };
-      console.log("----------------------------------------------------------------"+printData);
-      window.electronAPI.send('print-bill', printData); 
+      console.log(
+        "----------------------------------------------------------------" +
+          printData
+      );
+      window.electronAPI.send("print-bill", printData);
     }
     viewContainer.style.visibility = "hidden";
     mainContainer.style.filter = "blur(0px)";

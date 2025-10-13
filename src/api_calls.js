@@ -1,7 +1,5 @@
-import { ShowRevenue } from "./table.js";
-import { generateTables, updateTDom } from "./table.js";
+
 import { parcel_Data } from "./index_parcel.js";
-import { initOrderWindow } from "./index.js";
 const loader = document.getElementById("loader-wrapper");
 
 export async function postRequestSalesData(userData) {
@@ -24,18 +22,29 @@ export async function postRequestSalesData(userData) {
   }
 }
 
+function formatIndianNumber(num) {
+  if (typeof num !== "number" || isNaN(num)) {
+    return num; 
+  }
+  const str = num.toString();
+  const [integerPart, decimalPart] = str.split(".");
+  const lastThree = integerPart.slice(-3);
+  const otherNumbers = integerPart.slice(0, -3);
+  const formatted = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + 
+                    (otherNumbers ? "," : "") + lastThree;
+
+  return decimalPart ? `${formatted}.${decimalPart}` : formatted;
+}
+
 export async function GetsalesReport() {
   try {
     const response = await fetch(
       "https://billing-resturant-api.onrender.com/getSalesData"
     );
     const data = await response.json();
-    document.getElementsByClassName("revenue-number")[0].innerHTML =
-      data.monthlysale;
-    document.getElementsByClassName("revenue-number")[1].innerHTML =
-      data.dailySale;
-    document.getElementsByClassName("revenue-number")[2].innerHTML =
-      data.yealysale;
+    document.getElementsByClassName("revenue-number")[0].innerHTML = `₹${formatIndianNumber(data.monthlysale)}`;
+    document.getElementsByClassName("revenue-number")[1].innerHTML =`₹${formatIndianNumber(data.monthlysale)}`;
+    document.getElementsByClassName("revenue-number")[2].innerHTML = `₹${formatIndianNumber(data.monthlysale)}`;
   } catch (error) {
     alert("couldn't fetch salesdata from data base");
   }

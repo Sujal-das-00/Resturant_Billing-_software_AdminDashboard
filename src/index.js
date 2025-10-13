@@ -14,8 +14,8 @@ export async function initOrderWindow() {
   })
  
 
-  const updateTable = (orderInf) => {
-     tablesData[orderInf.tableNumber - 1].tableStatus = orderInf.tableStatus;
+  const updateTable = async (orderInf) => {
+    tablesData[orderInf.tableNumber - 1].tableStatus = orderInf.tableStatus;
     tablesData[orderInf.tableNumber - 1].paymentStatus = orderInf.paymentStatus;
     tablesData[orderInf.tableNumber - 1].customerName = orderInf.customerName;
     tablesData[orderInf.tableNumber - 1].items = orderInf.items;
@@ -29,7 +29,7 @@ export async function initOrderWindow() {
     updateTDom(tablesData);
   }
   await GetsalesReport();
-  generateTables(tablesData);
+  await generateTables(tablesData);
   updateTDom(tablesData);
  
 }

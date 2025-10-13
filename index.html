@@ -10,11 +10,11 @@
 
 <body>
     <div class="main-container">
-        <div class="header" style="background-color: #ff8f1f;">
+        <!-- <div class="header" style="background-color: #ff8f1f;">
             <div class="contact-info">Developer help +91 9430798527</div>
             <div class="admin-name">Admin Panel XYZ Hotel</div>
 
-        </div>
+        </div> -->
         <div class="dashboard">
             <div class="loader-wrapper hidden" id="loader-wrapper">
                 <div class="spinner">
@@ -26,21 +26,63 @@
                 </div>
             </div>
             <div class="leftpanel">
+                <div class="hotel-info-logo">
+                    <div class="profile-widget">
+                        <div class="icon-container">
+                            <img src="assets/tray.png">
+                        </div>
+                        <div class="text-container">
+                            <div class="title">XYZ Hotel</div>
+                            <div class="subtitle">Admin Panel</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="orders" class="oder-btn" data-page="orders"><img src="assets/purchase-order.png"
+                        height="20px" class="img"><span>Orders</span></button>
 
-                <button id="orders" class="oder-btn" data-page="orders"><img src="assets/delivery-man.png" alt=""
-                        height="50px" class="img">Orders</button>
-                <button id="parcel" class="oder-btn" data-page="parcel"><img src="assets/tracking.png" alt=""
-                        height="50px" class="img">Parcel</button>
-                <button id="refresh" class="oder-btn"><img src="assets/refresh.png" alt="" height="30px"
+                <button id="parcel" class="oder-btn" data-page="parcel"><img src="assets/parcel.png" alt=""
+                        height="20px" class="img">Parcel</button>
+                <button id="refresh" class="oder-btn"><img src="assets/refresh.png" alt="" height="20px"
                         class="img">Refresh</button>
-                <button id="more-info" class="oder-btn" data-page="more"><img src="assets/menu.png" alt="" height="30px"
+                <button id="more-info" class="oder-btn" data-page="more"><img src="assets/more.png" alt="" height="20px"
                         class="img">More</button>
 
             </div>
 
             <div class="main-parent-right">
-                <!-- <div><h2 id="nothing-to-show">Nothing to show here...</h2></div> -->
-                <div class="right-panel" id="right-panel"></div>
+
+                <div class="right-panel" id="right-panel">
+                    <div class="overview-header">
+                        <h2>Dashboard Overview</h2>
+                        <p>Monitor your hotel operations in real-time</p>
+                    </div>
+                    <div class="revenue-panel">
+                        <div class="card">
+                            <div class="head">
+                                <p>Monthly Revenue</p>
+                                <img src="assets/grow-up.png" width="25px">
+                            </div>
+                            <h2 id="revenue-display" class="revenue-number">₹0.0</h2>
+                        </div>
+                        <div class="card" style="background-color: #f5f2ed; border: 2px solid #f5e3c4;">
+                            <div class="head">
+                                <p>Daily Revenue</p>
+                                <img src="assets/grow-up.png" width="25px">
+                            </div>
+                            <h2 id="revenue-display" class="revenue-number" style="color: #f0a308;">₹0.0</h2>
+                        </div>
+                        <div class="card">
+                            <div class="head">
+                                <p>Yearly Revenue</p>
+                                <img src="assets/grow-up.png" width="25px">
+                            </div>
+                            <h2 id="revenue-display" class="revenue-number" >₹0.0</h2>
+                        </div>
+                    </div>
+
+                    <h2 class="table-management">Table Management</h2>
+                </div>
+
                 <div class="parcel-container" id="parcel-container">
 
 
