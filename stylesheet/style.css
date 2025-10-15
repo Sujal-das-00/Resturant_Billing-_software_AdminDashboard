@@ -114,7 +114,11 @@
 }
 
 .parcel-container {
+    padding: 3% 0%;
     position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     left: 0;
     top: 0;
     visibility: hidden;
@@ -410,31 +414,14 @@
     background-color: #d6d7d8;
 }
 
-.parcel {
-    border: 2px solid;
-    height: 80px;
-    background-color: #d1d1d1;
-    margin: 30px 30px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
 .parcel-name {
     font-size: 26px;
     margin-left: 20px;
     width: 79%;
 }
-
-.parcel button {
-    font-size: 22px;
-    font-weight: 700;
-    padding: 10px 15px;
-    border-radius: 6px;
-    background-color: #1d933c;
-    color: #ffffff;
-    cursor: pointer;
+#drag-handle{
+    text-align: center;
+    font-size: larger;
 }
 
 .view-order-container {

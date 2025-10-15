@@ -269,10 +269,6 @@ export function orderView(orderData, type) {
   if (orderData.items.length == 0) {
     return alert("no orders found");
   }
-  // if (type === "Parcel") {
-  //   const parcel = document.querySelector(".parcel");
-  //   parcel.id = `parcel[data-id='${orderData.id}']`;
-  // }
   document.querySelector(".main-container").style.filter = "blur(8px)";
   document.querySelector(".view-order-container").style.visibility = "visible";
   const order_container = document.querySelector(".oder-text");

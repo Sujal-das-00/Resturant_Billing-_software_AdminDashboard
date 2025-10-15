@@ -1,0 +1,144 @@
+
+.order-card-wrapper {
+    background-image: url('https://images.unsplash.com/photo-1510784799797-0f8664f3d17c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyOTd8MHwxfHNlYXJjaHwxfHNsZWVwaW5nJTIwZGF5fGVufDB8fHx8MTcwNzI4Nzk3NXww&ixlib=rb-4.0.3&q=80&w=1080'); /* Replace with your desired background image */
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px; /* Adjust as needed */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.order-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Optional: for a frosted glass effect */
+    border-radius: 10px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px; /* Space between left and right sections */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.order-info-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1; /* Allows this section to take available space */
+}
+
+.order-icon-name {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.order-icon {
+    background-color: #e0e7ee;
+    border-radius: 5px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a6fa3;
+}
+
+.customer-name {
+    font-weight: bold;
+    font-size: 1.15em;
+    color: #333;
+}
+
+.order-id {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.order-location-date {
+    display: flex;
+    gap: 25px;
+    font-size: 0.9em;
+    color: #555;
+    flex-wrap: wrap; /* Allows location/date to wrap */
+}
+
+.order-location, .order-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.order-location svg, .order-date svg {
+    color: #666;
+    height: 18px;
+    width: 18px;
+}
+
+.order-actions-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align items to the right */
+    gap: 10px;
+}
+
+.order-status {
+    width: max-content;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85em;
+    color: #fff;
+}
+
+/* Status specific colors */
+.order-status.pending {
+    background-color: #ff9800; /* Orange */
+}
+.order-status.delivered {
+    background-color: #4CAF50; /* Green */
+}
+.order-status.cancelled {
+    background-color: #f44336; /* Red */
+}
+
+.view-order-button {
+    background-color: #28a745; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-order-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .order-card {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align all items to the left */
+    }
+
+    .order-actions-right {
+        width: 100%; /* Make buttons and status take full width */
+        align-items: stretch; /* Stretch buttons */
+    }
+
+    .view-order-button {
+        width: 100%; /* Make button full width */
+        padding: 12px 20px; /* Make button taller for touch */
+    }
+
+    .order-location-date {
+        flex-direction: column; /* Stack location and date vertically */
+        gap: 8px;
+    }
+}

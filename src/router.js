@@ -20,6 +20,7 @@ parcelBTN.addEventListener("click", () => {
       nothingToShow.textContent = "Nothing to show here..";
       container.appendChild(nothingToShow);
       nothingToShow.style.visibility = "visible";
+      fetchAllData();
     }
   } else {
     const element = document.getElementById("nothing-to-show");
@@ -49,7 +50,20 @@ socket.on("newParcel", (parcel) => {
 
 const refreshBtn = document.getElementById("refresh");
 refreshBtn.addEventListener("click", async () => {
-  await fetchAllData();
+  const wantsToReload = confirm("Do you want to reload? ");
+  if (wantsToReload) {
+    location.reload(true);
+  }
+  else{
+    rightPanel.style.visibility = "visible";
+  parcelContainer.style.visibility = "hidden";
+  const nothingToShow = document.getElementById("nothing-to-show");
+  if (nothingToShow) {
+    nothingToShow.style.visibility = "hidden";
+  }
+  tablePanel.innerHTML = "";
+  initOrderWindow();
+  }
 });
 
 initOrderWindow();
