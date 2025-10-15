@@ -21,7 +21,7 @@ export async function postRequestSalesData(userData) {
     console.log(error);
   }
 }
-
+//format the revenue 
 function formatIndianNumber(num) {
   if (typeof num !== "number" || isNaN(num)) {
     return num; 
@@ -49,6 +49,10 @@ export async function GetsalesReport() {
     alert("couldn't fetch salesdata from data base");
   }
 }
+
+
+
+
 export async function RejectOrder(tableNumber) {
   try {
     return await fetch(
@@ -59,6 +63,10 @@ export async function RejectOrder(tableNumber) {
     console.log("error occured in rejecting order", error);
   }
 }
+
+
+
+
 
 export async function compelteParcelorderSaveData(parcelOrder) {
   parcelOrder.Order_type = "Parcel";
@@ -78,6 +86,9 @@ export async function compelteParcelorderSaveData(parcelOrder) {
   }
 }
 
+
+
+
 export async function RejectParcel(parcelId) {
   try {
     return await fetch(
@@ -88,6 +99,9 @@ export async function RejectParcel(parcelId) {
     return error;
   }
 }
+
+
+
 
 export async function fetchAllData() {
   loader.classList.remove("hidden");
@@ -115,6 +129,9 @@ export async function fetchAllData() {
     loader.classList.add("hidden");
   }
 }
+
+
+
 
 export async function generateTablesviaDB() {
   try {

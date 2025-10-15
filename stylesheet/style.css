@@ -132,7 +132,9 @@
     height: 20%;
     width: 100%;
 }
-
+.buttonholder{
+    height:100%
+}
 
 .profile-widget {
     display: flex;
@@ -224,6 +226,30 @@
     display: flex;
     flex-direction: column;
 
+}
+@media (max-width: 980px){
+    .revenue-panel{
+        height: 25dvh;
+    }
+    .card h2{
+        font-size: 2.2rem;
+    }
+    .leftpanel{
+        gap: 10%;
+    }
+    .profile-widget{
+        padding: 0;
+        gap: 2%;
+    }
+    #orders{
+        margin-top: 10%;
+    }
+    .subtitle{
+        padding: 3px;
+    }
+    .overview-header{
+        height: 25%;
+    }
 }
 
 .revenue-text {
