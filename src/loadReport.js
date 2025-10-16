@@ -1,4 +1,5 @@
 import { renderChart } from "./reports.js"
+import { weeklyChartDataLoad } from "./weeklyReport.js";
 export function loadReportpanel(){
     const reportpanel = document.getElementById("report-panel")
     reportpanel.innerHTML=`<div class="header-reports">
@@ -70,7 +71,18 @@ export function loadReportpanel(){
                 <canvas class="area-graph" id="area-graph"></canvas>
             </div>
         </div>
+    </div>
+    <div class="graph-container">
+        <div class="graph-wrapper">
+            <div class="wraper">
+                <h2>Daily Sales Performance</h2>
+                <p>Revenue and order trends throughout the month</p>
+            </div>
+            <div class="monthly-sales-graph">
+                <canvas class="area-graph" id="area-graph-weekly"></canvas>
+            </div>
+        </div>
     </div>`
     renderChart();
-
+    weeklyChartDataLoad();
 }
