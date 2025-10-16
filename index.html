@@ -7,6 +7,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="stylesheet/style.css">
     <link rel="stylesheet" href="stylesheet/parcel.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="reports.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -33,17 +37,17 @@
                         </div>
                     </div>
                 </div>
-                
-                    <button id="orders" class="oder-btn" data-page="orders"><img src="assets/purchase-order.png"
-                            height="20px" class="img"><span>Orders</span></button>
 
-                    <button id="parcel" class="oder-btn" data-page="parcel"><img src="assets/parcel.png" alt=""
-                            height="20px" class="img">Parcel</button>
-                    <button id="refresh" class="oder-btn"><img src="assets/refresh.png" alt="" height="20px"
-                            class="img">Refresh</button>
-                    <button id="more-info" class="oder-btn" data-page="more"><img src="assets/more.png" alt=""
-                            height="20px" class="img">More</button>
-                
+                <button id="orders" class="oder-btn" data-page="orders"><img src="assets/purchase-order.png"
+                        height="20px" class="img"><span>Orders</span></button>
+
+                <button id="parcel" class="oder-btn" data-page="parcel"><img src="assets/parcel.png" alt=""
+                        height="20px" class="img">Parcel</button>
+                <button id="refresh" class="oder-btn"><img src="assets/refresh.png" alt="" height="20px"
+                        class="img">Refresh</button>
+                <button id="Reports" class="oder-btn" data-page="more"><img src="assets/more.png" alt="" height="20px"
+                        class="img">Reports</button>
+
 
             </div>
 
@@ -81,10 +85,8 @@
                     <h2 class="table-management">Table Management</h2>
                 </div>
 
-                <div class="parcel-container" id="parcel-container">
-
-
-                </div>
+                <div class="parcel-container" id="parcel-container"></div>
+                <div class="report-panel" id="report-panel"></div>
             </div>
 
         </div>

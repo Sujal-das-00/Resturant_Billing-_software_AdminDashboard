@@ -127,6 +127,17 @@
     right: 0;
     overflow-y: auto;
 }
+.report-panel{
+    padding: 3% 0%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    background-color: #ffffff;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+}
 
 .hotel-info-logo {
     height: 20%;

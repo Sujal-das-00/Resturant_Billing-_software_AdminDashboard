@@ -1,0 +1,126 @@
+/* Basic setup and font import */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-reports {
+    height: 14dvh;
+    border-bottom: 1px solid #e4e4e7;
+    padding: 2% 3%;
+}
+
+.header-reports h2 {
+    font-size: 1.6rem;
+}
+
+.header-reports p {
+    color: #71717a;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.reports-container {
+    height: 25dvh;
+    padding: 2.2% 3%;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 4%;
+}
+
+.card-report {
+    min-width: 180px;
+    width: 25%;
+    background-color: #ffffff;
+    border-radius: 0.8rem;
+    padding: 24px;
+    border: 1px solid #e4e4e7;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-title {
+    margin: 0;
+    color: #71717a;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.card-value {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #18181b;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 0.5rem;
+    background-color: #eef2ff;
+}
+
+.icon .material-symbols-outlined {
+    font-size: 24px;
+    color: #6366f1;
+}
+
+.graph-container {
+    background-color: #fcfcfc;
+    height: 65dvh;
+    display: flex;
+    gap: 2%;
+    flex-direction: column;
+    padding: 2%;
+}
+
+.monthly-sales-graph {
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+
+.area-graph {
+    width: 100%;
+    height: 100%;
+}
+
+.graph-wrapper {
+    border-radius: 0.7rem;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    border: 1px solid #e4e4e7;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+@media (min-width: 768px) {
+    .reports-container {
+        /* Show 2 cards side-by-side */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For screens wider than 1024px (desktops) */
+@media (min-width: 1024px) {
+    .reports-container {
+        /* Show 4 cards side-by-side */
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
