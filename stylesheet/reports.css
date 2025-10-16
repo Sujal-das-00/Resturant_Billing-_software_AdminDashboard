@@ -1,4 +1,3 @@
-/* Basic setup and font import */
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +5,9 @@
 }
 
 .header-reports {
-    height: 14dvh;
+    height: auto;
     border-bottom: 1px solid #e4e4e7;
-    padding: 2% 3%;
+    padding: 24px;
 }
 
 .header-reports h2 {
@@ -19,22 +18,26 @@
     color: #71717a;
     font-size: 1rem;
     font-weight: 500;
-    margin-top: 2px;
+    margin-top: 4px;
 }
 
 .reports-container {
-    height: 25dvh;
-    padding: 2.2% 3%;
-    overflow-x: auto;
+    padding: 24px;
     width: 100%;
-    max-width: 1200px;
     display: flex;
-    gap: 4%;
+    gap: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.reports-container::-webkit-scrollbar {
+    display: none;
 }
 
 .card-report {
-    min-width: 180px;
-    width: 25%;
+    flex-shrink: 0;
+    width: 240px;
     background-color: #ffffff;
     border-radius: 0.8rem;
     padding: 24px;
@@ -82,17 +85,26 @@
 
 .graph-container {
     background-color: #fcfcfc;
-    height: 65dvh;
+    height: auto;
     display: flex;
-    gap: 2%;
     flex-direction: column;
-    padding: 2%;
+    gap: 16px;
+    padding: 24px;
+}
+
+.graph-wrapper {
+    border-radius: 0.7rem;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    border: 1px solid #e4e4e7;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .monthly-sales-graph {
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 50vh;
 }
 
 .area-graph {
@@ -100,27 +112,20 @@
     height: 100%;
 }
 
-.graph-wrapper {
-    border-radius: 0.7rem;
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    border: 1px solid #e4e4e7;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-
 @media (min-width: 768px) {
     .reports-container {
-        /* Show 2 cards side-by-side */
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        overflow-x: visible;
+    }
+
+    .card-report {
+        width: auto;
     }
 }
 
-/* For screens wider than 1024px (desktops) */
 @media (min-width: 1024px) {
     .reports-container {
-        /* Show 4 cards side-by-side */
         grid-template-columns: repeat(4, 1fr);
     }
 }
