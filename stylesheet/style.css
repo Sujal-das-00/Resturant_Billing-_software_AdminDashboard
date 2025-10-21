@@ -238,7 +238,7 @@
     flex-direction: column;
 
 }
-@media (max-width:900px) {
+@media (max-width:800px) {
     .revenue-panel{
         height: 20dvh;
         background-color: #0048FF;
@@ -254,7 +254,7 @@
     }
 
 }
-@media (min-width: 901px) and (max-width: 980px){
+@media (min-width: 801px) and (max-width: 980px){
     .revenue-panel{
         height: 15dvh;
         background-color: #009b0d;
