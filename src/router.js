@@ -1,5 +1,5 @@
 import { initOrderWindow } from "./index.js";
-import { initializeOrderView, ShowRevenue } from "./table.js";
+import { initializeOrderView } from "./table.js";
 import { parcel_Data } from "./index_parcel.js";
 import { fetchAllData } from "./api_calls.js";
 import socket from "./connection.js";
@@ -11,11 +11,15 @@ const parcelBTN = document.getElementById("parcel");
 const reports = document.getElementById("Reports");
 const reportpanel = document.getElementById("report-panel");
 
-parcelBTN.addEventListener("click", () => {
+parcelBTN.addEventListener("click", async () => {
+
   rightPanel.style.visibility = "hidden";
   parcelContainer.style.visibility = "visible";
   reportpanel.style.visibility = "hidden";
+
   if (document.querySelectorAll(".parcel").length == 0) {
+    console.log("parcel container data ",document.querySelectorAll(".parcel").length);
+
     const container = document.getElementById("parcel-container");
     if (container) {
       container.innerHTML = "";
@@ -24,30 +28,35 @@ parcelBTN.addEventListener("click", () => {
       nothingToShow.textContent = "Nothing to show here..";
       container.appendChild(nothingToShow);
       nothingToShow.style.visibility = "visible";
-      fetchAllData();
+    }
+    else{
+      console.log("inside else block");
     }
   } else {
     const element = document.getElementById("nothing-to-show");
     if (element) {
       element.remove();
     }
+    await fetchAllData();
   }
 });
 
 const orderBtn = document.getElementById("orders");
-const tablePanel = document.querySelector("table-content");
+const tablePanel = document.querySelector(".table-content");
 
-orderBtn.addEventListener("click", () => {
+orderBtn.addEventListener("click", async () => {
   rightPanel.style.visibility = "visible";
   parcelContainer.style.visibility = "hidden";
   reportpanel.style.visibility = "hidden";
-
   const nothingToShow = document.getElementById("nothing-to-show");
   if (nothingToShow) {
     nothingToShow.style.visibility = "hidden";
   }
+  
+  
+  const tablePanel = document.querySelector(".table-content");
   tablePanel.innerHTML = "";
-  initOrderWindow();
+  await initOrderWindow();
 });
 
 socket.on("newParcel", (parcel) => {

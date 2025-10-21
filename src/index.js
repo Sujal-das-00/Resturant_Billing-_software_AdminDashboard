@@ -5,7 +5,6 @@ import { GetsalesReport,generateTablesviaDB} from "./api_calls.js"
 export const tablesData = await generateTablesviaDB();
 
 export async function initOrderWindow() {
-  console.log("inside  init orderWindow");
   document.getElementById("parcel-container").style.visibility="hidden"
   
   socket.on('tableOrder', (orderInfo) => {
@@ -29,7 +28,7 @@ export async function initOrderWindow() {
     updateTDom(tablesData);
   }
   await GetsalesReport();
-  await generateTables(tablesData);
+  generateTables(tablesData);
   updateTDom(tablesData);
- 
+
 }

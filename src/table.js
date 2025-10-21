@@ -6,25 +6,25 @@ import {
   RejectParcel,
 } from "./api_calls.js";
 
-export function ShowRevenue(revenue, SaleTxt) {
-  const container = document.getElementById("right-panel");
-  const revenuePanel = document.querySelector(".revenue-panel");
-  if (!revenuePanel) {
-    revenuePanel = document.createElement("div");
-    revenuePanel.className = "revenue-panel";
-    revenuePanel.id = "revenue-panel";
-    revenuePanel.innerHTML = "";
-    container.appendChild(revenuePanel);
-  }
+// export function ShowRevenue(revenue, SaleTxt) {
+//   const container = document.getElementById("right-panel");
+//   const revenuePanel = document.querySelector(".revenue-panel");
+//   if (!revenuePanel) {
+//     revenuePanel = document.createElement("div");
+//     revenuePanel.className = "revenue-panel";
+//     revenuePanel.id = "revenue-panel";
+//     revenuePanel.innerHTML = "";
+//     container.appendChild(revenuePanel);
+//   }
 
-  const saleItem = document.createElement("div");
-  saleItem.className = "sale-panel"; // Set the class directly on the item
-  saleItem.innerHTML = `
-        <div class="revenue-text">${SaleTxt} Revenue</div>
-        <div class="revenue-number">₹0</div>
-    `;
-  revenuePanel.appendChild(saleItem);
-}
+//   const saleItem = document.createElement("div");
+//   saleItem.className = "sale-panel"; // Set the class directly on the item
+//   saleItem.innerHTML = `
+//         <div class="revenue-text">${SaleTxt} Revenue</div>
+//         <div class="revenue-number">₹0</div>
+//     `;
+//   revenuePanel.appendChild(saleItem);
+// }
 
 export function generateTables(tables) {
   console.log("inside generate table");

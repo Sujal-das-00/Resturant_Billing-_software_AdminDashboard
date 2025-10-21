@@ -1,6 +1,8 @@
 import { renderChart } from "./reports.js"
 import { weeklyChartDataLoad } from "./weeklyReport.js";
-export function loadReportpanel(){
+import { GetsalesReport } from "./api_calls.js";
+export async function loadReportpanel(){
+    const data = await GetsalesReport();
     const reportpanel = document.getElementById("report-panel")
     reportpanel.innerHTML=`<div class="header-reports">
         <h2>Restaurant Analytics</h2>
@@ -11,7 +13,7 @@ export function loadReportpanel(){
         <div class="card-report">
             <div class="card-content">
                 <p class="card-title">Total Revenue</p>
-                <h2 class="card-value">₹95,000</h2>
+                <h2 class="card-value">${data.TotalSale}</h2>
             </div>
             <div class="card-icon-container">
                 <div class="icon">
@@ -24,7 +26,7 @@ export function loadReportpanel(){
         <div class="card-report">
             <div class="card-content">
                 <p class="card-title">Month Revenue</p>
-                <h2 class="card-value">₹5,000</h2>
+                <h2 class="card-value">${data.MonthlySale}</h2>
             </div>
             <div class="card-icon-container">
                 <div class="icon">
