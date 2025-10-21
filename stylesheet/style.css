@@ -241,6 +241,7 @@
 @media (max-width:900px) {
     .revenue-panel{
         height: 20dvh;
+        background-color: #0048FF;
     }
     .card h2{
         font-size: 2.2rem;
@@ -256,6 +257,7 @@
 @media (min-width: 901px) and (max-width: 980px){
     .revenue-panel{
         height: 15dvh;
+        background-color: #009b0d;
     }
     .card{
         height: 15dvh;
