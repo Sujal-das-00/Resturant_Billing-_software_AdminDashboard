@@ -238,7 +238,7 @@
     flex-direction: column;
 
 }
-@media (max-width:950px) {
+@media (max-width:900px) {
     .revenue-panel{
         height: 20dvh;
     }
@@ -253,7 +253,7 @@
     }
 
 }
-@media (min-width: 951px) and (max-width: 980px){
+@media (min-width: 901px) and (max-width: 980px){
     .revenue-panel{
         height: 15dvh;
     }
