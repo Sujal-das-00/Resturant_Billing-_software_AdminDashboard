@@ -95,7 +95,6 @@
     }
     .table-content {
         display: flex;
-        margin: auto;
     }
     .table{
         width: 100%;
@@ -105,7 +104,7 @@
 
     .table-box {
         width: 100%;
-        max-width: 300px;
+        max-width: 330px;
     }
     .contact-info {
         justify-content: flex-start;
