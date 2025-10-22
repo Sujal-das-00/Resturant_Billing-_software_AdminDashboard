@@ -1,6 +1,5 @@
-
 // This function will take the data and build the HTML
-async function populateBill (data) {
+async function populateBill(data) {
   // Set Order ID
   document.querySelector(".order").textContent = `Order : ${data.order}`;
 
@@ -32,16 +31,23 @@ async function populateBill (data) {
   });
 
   // Set Total Price
-  document.querySelector(".total-price").textContent = `₹${data.totalPrice.toFixed(
-    2
-  )}`;
-  const text=`upi://pay?pa=9430798527@omni&pn=Sujal&am=${data.totalPrice}&cu=INR&tn=Invoice+Test&tr=INV001`
-  const dataUrl = await QRCode.toDataURL(text, { width: 100});
-  document.getElementById("pqymentqr").src=dataUrl;
+  document.querySelector(
+    ".total-price"
+  ).textContent = `₹${data.totalPrice.toFixed(2)}`;
+  const text = `upi://pay?pa=9430798527@omni&pn=Sujal&am=${data.totalPrice}&cu=INR&tn=Invoice+Test&tr=INV001`;
+  const dataUrl = await QRCode.toDataURL(text, { width: 100 });
+  document.getElementById("pqymentqr").src = dataUrl;
 }
 
 // Listen for the 'bill-data' event from the main process
-window.electronAPI.on("bill-data", (dataObject) => {
-  console.log("Received bill data!", dataObject);
-  populateBill(dataObject);
+// window.electronAPI.on("bill-data", (dataObject) => {
+//   console.log("Received bill data!", dataObject);
+//   populateBill(dataObject);
+// });
+
+window.addEventListener("message", async (event) => {
+  const data = event.data;
+  console.log("Bill data received:", data);
+  await populateBill(data);
+  window.print();
 });

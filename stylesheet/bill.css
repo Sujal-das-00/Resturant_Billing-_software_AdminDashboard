@@ -110,3 +110,19 @@ body {
     width: 25%;
     border: 1px solid;
 }
+
+/* ... all your existing CSS ... */
+
+@media print {
+  
+  /* This is the new, essential part */
+  @page {
+    /* This removes all printer margins */
+    margin: 0mm; 
+  }
+  
+  #print-button {
+    /* This hides your print button */
+    display: none !important;
+  }
+}

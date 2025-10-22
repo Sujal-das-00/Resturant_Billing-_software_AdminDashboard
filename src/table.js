@@ -152,7 +152,7 @@ let currentOrderData = null;
 let currentOrderType = null;
 const viewContainer = document.querySelector(".view-order-container");
 const mainContainer = document.querySelector(".main-container");
-
+const billFrame = document.getElementById("billframe");
 export function initializeOrderView() {
   // Listener for the main close button
   document.getElementById("closebtn").addEventListener("click", () => {
@@ -244,14 +244,20 @@ export function initializeOrderView() {
       }
     }
 
-    if ((currentOrderType = "Table Order")) {
+    if ((currentOrderType === "Table Order")) {
       console.log("current order ----", currentOrderData);
       const printData = {
         order: "Table No " + currentOrderData.tableNumber,
         items: currentOrderData.items,
         totalPrice: currentOrderData.totalPrice,
       };
-      window.electronAPI.send("print-bill", printData);
+
+       //iframe based bill routing web app
+      billFrame.onload = () => {
+        billFrame.contentWindow.postMessage(printData, "*");
+      };
+      billFrame.src = "bill.html";
+      // window.electronAPI.send("print-bill", printData); electron api calling to access printer
     }
     viewContainer.style.visibility = "hidden";
     mainContainer.style.filter = "blur(0px)";
