@@ -89,6 +89,9 @@
     }
     .hamburger{
         display: block;
+        position: absolute;
+        z-index: 1000;
+
     }
     .table-content {
         display: flex;
@@ -125,7 +128,7 @@
         left: 0;
         right: 0;
         width: 65%;
-        z-index: 10;
+        z-index: 1001;
         transition: ease-in;
     }
     .hamburger-close{
