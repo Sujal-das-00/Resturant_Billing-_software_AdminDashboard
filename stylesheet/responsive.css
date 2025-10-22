@@ -1,0 +1,209 @@
+/* =========================================== */
+/* =========== TABLET STYLES ============= */
+/* (Screens up to 980px wide) */
+/* =========================================== */
+@media (max-width: 980px) {
+    .leftpanel {
+        /* Make sidebar slightly wider and reduce gap */
+        width: 30%;
+        gap: 2%;
+    }
+    .overview-header{
+        height: 9dvh;
+    }
+
+    .main-parent-right {
+        width: 70%;
+    }
+
+    .header {
+        /* Fix the original width issue */
+        justify-content: space-between;
+    }
+
+    .contact-info {
+        width: auto; /* Let it size to its content */
+        padding: 0 15px;
+        font-size: 16px;
+    }
+
+    .admin-name {
+        flex-grow: 1; /* Let it take remaining space */
+        width: auto;
+        font-size: 28px;
+    }
+
+    .revenue-panel {
+        /* Allow cards to wrap and adjust height */
+        height: auto;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .card {
+        /* Aim for 2 cards side-by-side */
+        width: 45%;
+        min-width: 100px;
+        height: auto;
+    }
+
+    .card h2 {
+        font-size: 2.2rem;
+    }
+
+    .table-content {
+        /* Center the wrapping boxes */
+        display: flex;
+        gap: 10px;
+    }
+    .table{
+        width: 45%;
+    }
+
+    .table-box {
+        /* Ensure it doesn't get too small */
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .view-order-container {
+        /* Make the popup wider on tablets */
+        width: 80%;
+    }
+
+    .oder-text h3 {
+        font-size: 1.6rem;
+    }
+}
+
+/* =========================================== */
+/* =========== MOBILE STYLES ============= */
+/* (Screens up to 768px wide) */
+/* =========================================== */
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        padding: 10px;
+        flex-direction: column;
+    }
+    .hamburger{
+        display: block;
+    }
+    .table-content {
+        display: flex;
+        margin: auto;
+    }
+    .table{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table-box {
+        width: 100%;
+        max-width: 300px;
+    }
+    .contact-info {
+        justify-content: flex-start;
+        padding: 5px 0;
+    }
+    
+    .admin-name {
+        font-size: 24px;
+        justify-content: flex-start;
+    }
+
+    .dashboard {
+        height: auto;
+        min-height: 100dvh;
+    }
+
+    .leftpanel {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 65%;
+        z-index: 10;
+        transition: ease-in;
+    }
+    .hamburger-close{
+        display: block;
+    }
+
+    .main-parent-right {
+        width: 100%;
+        border-radius: 10px;
+        height: auto;
+    }
+
+    .overview-header {
+        height: auto;
+        padding: 15px;
+    }
+
+    .overview-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .revenue-panel {
+        /* Stack cards vertically */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        /* Make cards take up most of the width */
+        width: 90%;
+    }
+
+    .card h2 {
+        font-size: 2rem;
+    }
+
+    /* === Popup Modal Styles (from your original code) === */
+    .view-order-container {
+        width: 95%;
+        height: 90vh;
+    }
+
+    .oder-text {
+        font-size: 1.2rem;
+    }
+    .oder-text h3{
+        font-size: 1.5rem;
+    }
+     .oder-text p {
+        font-size: 1rem;
+    }
+
+    .status-view {
+        width: 50%;
+        font-size: 16px;
+    }
+
+    .dish,
+    .quantity,
+    .price {
+        font-size: 14px;
+        padding: 6px 4px;
+    }
+
+    .footer-order {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .totalbill,
+    #PrintOrder,
+    #close {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .totalbill {
+        font-size: 24px;
+    }
+}

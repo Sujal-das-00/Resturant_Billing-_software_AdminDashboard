@@ -11,12 +11,14 @@ const parcelBTN = document.getElementById("parcel");
 const reports = document.getElementById("Reports");
 const reportpanel = document.getElementById("report-panel");
 
+
+if(parcelBTN){
 parcelBTN.addEventListener("click", async () => {
 
   rightPanel.style.visibility = "hidden";
   parcelContainer.style.visibility = "visible";
   reportpanel.style.visibility = "hidden";
-
+  await fetchAllData();
   if (document.querySelectorAll(".parcel").length == 0) {
     console.log("parcel container data ",document.querySelectorAll(".parcel").length);
 
@@ -37,13 +39,14 @@ parcelBTN.addEventListener("click", async () => {
     if (element) {
       element.remove();
     }
-    await fetchAllData();
+    
   }
 });
+}
 
 const orderBtn = document.getElementById("orders");
 const tablePanel = document.querySelector(".table-content");
-
+if(orderBtn){
 orderBtn.addEventListener("click", async () => {
   rightPanel.style.visibility = "visible";
   parcelContainer.style.visibility = "hidden";
@@ -58,14 +61,17 @@ orderBtn.addEventListener("click", async () => {
   tablePanel.innerHTML = "";
   await initOrderWindow();
 });
+}
 
 socket.on("newParcel", (parcel) => {
   console.log(parcel);
   parcel_Data(parcel);
 });
 
+
 const refreshBtn = document.getElementById("refresh");
-refreshBtn.addEventListener("click", async () => {
+if(refreshBtn){
+  refreshBtn.addEventListener("click", async () => {
   const wantsToReload = confirm("Do you want to reload? ");
   if (wantsToReload) {
     location.reload(true);
@@ -81,15 +87,16 @@ refreshBtn.addEventListener("click", async () => {
   initOrderWindow();
   }
 });
+}
 
 
-
+if(reports){
 reports.addEventListener('click',async()=>{
   rightPanel.style.visibility = "hidden";
   reportpanel.style.visibility = "visible";
   reportpanel.innerHTML="";
   loadReportpanel();
 })
-
+}
 initOrderWindow();
 initializeOrderView();

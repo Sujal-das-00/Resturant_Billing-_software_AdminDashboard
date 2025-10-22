@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="stylesheet/style.css">
     <link rel="stylesheet" href="stylesheet/parcel.css">
+    <link rel="stylesheet" href="stylesheet/responsive.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="stylesheet/reports.css">
@@ -25,12 +26,16 @@
                     <div class="rect5"></div>
                 </div>
             </div>
-            <div class="leftpanel">
+            <div class="leftpanel" id="leftpanel">
                 <div class="hotel-info-logo">
                     <div class="profile-widget">
+                        <div class="hamburger-close" id="hamburger-close" width="20px" height="20px">
+                            <span class="material-symbols-outlined ">close</span>
+                        </div>
                         <div class="icon-container">
                             <img src="assets/tray.png">
                         </div>
+
                         <div class="text-container">
                             <div class="title">XYZ Hotel</div>
                             <div class="subtitle">Admin Panel</div>
@@ -52,7 +57,11 @@
             </div>
 
             <div class="main-parent-right">
-
+                <div class="hamburger">
+                    <span class="material-symbols-outlined " id="hamburgerBTN">
+                        menu
+                    </span>
+                </div>
                 <div class="right-panel" id="right-panel">
                     <div class="bill-container">
                         <img src="assets/close.png" width="20px" height="20px" id="bill-closebtn">
@@ -109,10 +118,8 @@
             <button id="close">Reject order</button>
         </div>
     </div>
-    <script src="src/buttonActive.js"></script>
-
-    <script type="module" src="src/router.js"></script>
-
 </body>
+<script src="src/buttonActive.js"></script>
+<script type="module" src="src/router.js"></script>
 
 </html>

@@ -225,6 +225,17 @@ export function initializeOrderView() {
     if (currentOrderType === "Parcel") {
       viewContainer.style.visibility = "hidden";
       mainContainer.style.filter = "blur(0px)";
+      const printData = {
+        order: "Parcel No " + currentOrderData.parcelId,
+        items: currentOrderData.items,
+        totalPrice: currentOrderData.totalPrice,
+      };
+      //iframe based bill routing web app
+      billFrame.onload = () => {
+        billFrame.contentWindow.postMessage(printData, "*");
+      };
+      billFrame.src = "bill.html";
+
       //logic to handel nothing to show and to remove parcel from the dom
       while (true) {
         const response = await compelteParcelorderSaveData(currentOrderData);
@@ -235,8 +246,20 @@ export function initializeOrderView() {
           ); //adding id to a particular parcel to delete it if the orderis rejected
           if (parcelToRemove) parcelToRemove.remove();
           if (document.querySelectorAll(".parcel").length == 0) {
-            document.getElementById("nothing-to-show").style.visibility =
-              "visible";
+            const container = document.getElementById("parcel-container");
+            if (container) {
+              container.innerHTML = "";
+              const nothingToShow = document.createElement("h2");
+              nothingToShow.id = "nothing-to-show";
+              nothingToShow.textContent = "Nothing to show here..";
+              container.appendChild(nothingToShow);
+              nothingToShow.style.visibility = "visible";
+            }
+          } else {
+            const element = document.getElementById("nothing-to-show");
+            if (element) {
+              element.remove();
+            }
           }
           alert(result.message);
           break;
@@ -244,7 +267,7 @@ export function initializeOrderView() {
       }
     }
 
-    if ((currentOrderType === "Table Order")) {
+    if (currentOrderType === "Table Order") {
       console.log("current order ----", currentOrderData);
       const printData = {
         order: "Table No " + currentOrderData.tableNumber,
@@ -252,7 +275,7 @@ export function initializeOrderView() {
         totalPrice: currentOrderData.totalPrice,
       };
 
-       //iframe based bill routing web app
+      //iframe based bill routing web app
       billFrame.onload = () => {
         billFrame.contentWindow.postMessage(printData, "*");
       };

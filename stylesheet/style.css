@@ -270,7 +270,7 @@
 @media (max-width:700px) {
     .revenue-panel{
         height: 20dvh;
-        background-color: #0048FF;
+
     }
     .card h2{
         font-size: 2.2rem;
@@ -286,7 +286,7 @@
 @media (min-width: 701px) and (max-width: 980px){
     .revenue-panel{
         height: 15dvh;
-        background-color: #3f5a41;
+
     }
     .card{
         height: 15dvh;
@@ -361,9 +361,14 @@
     width: 50px;
     background: #000;
 }
+.hamburger{
+    display: none;
+}
+.hamburger-close{
+    display: none;
+}
 
 .table-content {
-    /* border: 2px solid; */
     margin-top: 50px;
     height: 74vh;
     margin: 5px;

@@ -1,16 +1,9 @@
-const buttons = document.querySelectorAll(".oder-btn");
-if (buttons.length > 0) {
-  buttons[0].classList.add("active");
-}
-buttons.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => {
-      b.classList.remove("active");
-    });
-    if (index === 2) {
-      buttons[1].classList.add("active");
-    } else {
-      btn.classList.add("active");
-    }
-  });
+const hamburger = document.getElementById("hamburgerBTN");
+const leftPanel = document.getElementById("leftpanel");
+hamburger.addEventListener("click", () => {
+  leftPanel.style.visibility = "visible";
+});
+const close = document.getElementById("hamburger-close");
+close.addEventListener("click", () => {
+  leftPanel.style.visibility = "hidden";
 });
